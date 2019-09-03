@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="youtube_player_activity_name">Youtube Player</string>
+    <string name="minVersion">8</string>
+    <string name="isLaunchableActivity">true</string>
+</resources>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="xamarin_audio_spike.MainPage">
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Label Text="Testing Audio Playback" HorizontalOptions="Center" VerticalOptions="Center" />
+        <Button Text="Play Audio" Clicked="OnPlayButtonClicked" />
+        <Button Text="Stop Audio" Clicked="OnStopButtonClicked" />
+        <Button Text="Download Episode" Clicked="OnDownloadButtonClicked" />
+        <Button Text="Play Downloaded Episode" Clicked="OnPlayDownloadedClicked" />
+        <Button Text="Open Youtube Video" Clicked="OnYoutubeVideoClicked" />
+        <Button Text="Open Webview" Clicked="OnWebviewButtonClicked" />
+        <Button Text="Do JS Function" Clicked="OnDoJSFunctionClicked" />
+        <WebView x:Name="myWebView" WidthRequest="1000" HeightRequest="1000" />
+    </StackLayout>
+</ContentPage>
