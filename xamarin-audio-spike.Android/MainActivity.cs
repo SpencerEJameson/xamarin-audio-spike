@@ -21,7 +21,11 @@ namespace xamarin_audio_spike.Droid
 
       base.OnCreate(savedInstanceState);
 
-      CrossMediaManager.Current.Init(this);
+            CrossMediaManager.Current.Init(this);
+            //CrossMediaManager.Android.Notification.Enabled = false;
+            var musicControls = new MusicControls();
+            musicControls.Initialize(Application.Context);
+
       Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
       if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
@@ -49,7 +53,12 @@ namespace xamarin_audio_spike.Droid
       LoadApplication(new App());
     }
 
-    public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        protected override void OnResume()
+        {
+            base.OnResume();
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
     {
       Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
       //PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);

@@ -24,10 +24,13 @@ namespace xamarin_audio_spike.iOS
     //
     public override bool FinishedLaunching(UIApplication app, NSDictionary options)
     {
-      global::Xamarin.Forms.Forms.Init();
+
+     CrossMediaManager.Current.Init();
+
+            global::Xamarin.Forms.Forms.Init();
       LoadApplication(new App());
 
-      CrossMediaManager.Current.Init();
+      
       FirebasePushNotificationManager.Initialize(options, true);
 
       return base.FinishedLaunching(app, options);

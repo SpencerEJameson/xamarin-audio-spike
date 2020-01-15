@@ -9,7 +9,6 @@
         <Button Text="Play Downloaded Episode" Clicked="OnPlayDownloadedClicked" />
         <Button Text="Open Youtube Video" Clicked="OnYoutubeVideoClicked" />
         <Button Text="Open Webview" Clicked="OnWebviewButtonClicked" />
-        <Button Text="Do JS Function" Clicked="OnDoJSFunctionClicked" />
         <WebView x:Name="myWebView" WidthRequest="1000" HeightRequest="1000" />
     </StackLayout>
 </ContentPage>

@@ -15,7 +15,7 @@ using Plugin.Permissions.Abstractions;
 using Plugin.FirebasePushNotification;
 using System.Reflection;
 using System.IO;
-using UIKit;
+using MediaManager.Library;
 
 namespace xamarin_audio_spike
 {
@@ -32,7 +32,38 @@ namespace xamarin_audio_spike
       InitializeComponent();
       CrossFirebasePushNotification.Current.Subscribe("notification_new_episodes");
       CrossMediaManager.Current.PositionChanged += OnPositionChanged;
-      downloader.OnFileDownloaded += OnFileDownloaded;
+            //CrossMediaManager.Current.Notification.Enabled = true;
+            CrossMediaManager.Current.MediaControls.NextImpl = new Action(() =>
+            {
+                //CrossMediaManager.Current.Pause();
+                CrossMediaManager.Current.StepForward();
+                //CrossMediaManager.Current.Play();
+            });
+
+            CrossMediaManager.Current.MediaControls.SeekForwardImpl = new Action(() =>
+            {
+                CrossMediaManager.Current.StepForward();
+            });
+
+            CrossMediaManager.Current.MediaControls.SkipBackwardImpl = new Action(() =>
+            {
+                CrossMediaManager.Current.StepBackward();
+            });
+
+            CrossMediaManager.Current.MediaControls.SkipForwardImpl = new Action(() =>
+            {
+                CrossMediaManager.Current.StepForward();
+            });
+
+            CrossMediaManager.Current.MediaControls.MediaButtonEventImpl = new Func<object, bool>((intent) =>
+            {
+                CrossMediaManager.Current.StepForward();
+                return true;
+            });
+
+            //CrossMediaManager.Current.Bluetooth
+            //CrossMediaManager.Current.
+            downloader.OnFileDownloaded += OnFileDownloaded;
 
       SetupClipCreator();
     }
@@ -52,7 +83,7 @@ namespace xamarin_audio_spike
     async void OnPlayButtonClicked(object sender, EventArgs e)
     {
       MediaItem mediaItem = new MediaItem("https://traffic.libsyn.com/secure/draudioarchives/07182019_the_dave_ramsey_show_archive_1.mp3?dest-id=412720");
-
+     
       //mediaItem.Title = "some goober title";
       //mediaItem.Artist = "The Dave Ramsey Show";
       //mediaItem.Album = "Album name";
@@ -179,15 +210,15 @@ namespace xamarin_audio_spike
             var status = results[Permission.Storage];
         
 
-            if (status == PermissionStatus.Granted)
-            {
-                string deviceID = UIDevice.CurrentDevice.IdentifierForVendor.AsString();
-                Console.WriteLine(deviceID);
-                foreach (string file in Directory.EnumerateDirectories($"/var/mobile/Containers/Data/Application/E0A5E377-44F2-4A93-A78A-5B195BCA0E79"))
-                {
-                    Console.WriteLine(file);
-                }
-            }
+            //if (status == PermissionStatus.Granted)
+            //{
+            //    string deviceID = UIDevice.CurrentDevice.IdentifierForVendor.AsString();
+            //    Console.WriteLine(deviceID);
+            //    foreach (string file in Directory.EnumerateDirectories($"/var/mobile/Containers/Data/Application/E0A5E377-44F2-4A93-A78A-5B195BCA0E79"))
+            //    {
+            //        Console.WriteLine(file);
+            //    }
+            //}
             //Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
             
       //string result = await myWebView.EvaluateJavaScriptAsync($"multiply({10})");
